@@ -1,6 +1,10 @@
-import personal_api
 from googleapiclient.discovery import build
-api_key = personal_api.api_key
+from dotenv import load_dotenv 
+import os
+load_dotenv()  # Load variables from .env into environment
+# Access the variables
+api_key = os.getenv("TEST_API_KEY")
+
 youtube = build('youtube', 'v3', developerKey = api_key)
 
 
@@ -90,11 +94,11 @@ def main(user_input):
     #0 = channel
     #1 = playlist
     if check_channel_id(user_input):
-        return (user_input, 0)
+        return (user_input, 0, 'method 0')
     elif check_playlist_id(user_input):
-        return (user_input, 1)
+        return (user_input, 1, 'method 1')
     elif "list=" not in user_input:
-        return (get_channel_id(user_input), 0)
+        return (get_channel_id(user_input), 0, 'method 2')
     else:
-        return (get_playlist_id(user_input), 1)
+        return (get_playlist_id(user_input), 1, 'method 3')
 

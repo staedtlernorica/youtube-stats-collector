@@ -1,6 +1,10 @@
-import personal_api
 from googleapiclient.discovery import build
-api_key = personal_api.api_key
+from dotenv import load_dotenv 
+import os
+load_dotenv()  # Load variables from .env into environment
+# Access the variables
+api_key = os.getenv("TEST_API_KEY")
+
 youtube = build('youtube', 'v3', developerKey = api_key)
 
 
@@ -45,14 +49,21 @@ def get_stats_from_vids_json(statDictObj = {}):
         vid_runtime = isodate.parse_duration(playtime).total_seconds()
         vid_title = i['snippet'].get('title')
         #[:10] only want upload dates, not hour 
-        vid_date = i['snippet'].get('publishedAt')[:10]              
+        vid_date = i['snippet'].get('publishedAt')[:10]     
+        vid_url = f'https://www.youtube.com/watch?v={vid_id}'         
         vid_views = i['statistics'].get('viewCount')
         vid_likes = i['statistics'].get('likeCount')
-        vid_dislikes = i['statistics'].get('dislikeCount')
+        # vid_dislikes = i['statistics'].get('dislikeCount')
         vid_comments = i['statistics'].get('commentCount')
 
+        # print(vid_title)
+        # if vid_title[0] == '"' and vid_title[-1] == '"':
+        #     vid_title = vid_title.replace('"', '')
+
         temp_list.append((vid_title, vid_date, vid_views,
-            vid_likes, vid_dislikes, vid_comments,vid_id, vid_runtime))
+            vid_likes, 
+            # vid_dislikes, 
+            vid_comments,vid_id, vid_runtime, vid_url))
 
     return temp_list
 
