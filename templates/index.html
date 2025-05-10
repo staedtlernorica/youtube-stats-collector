@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Flask</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <section id="intro">
+            <h1>YouTube Stats Collector</h1>
+            <p>Ever wonder how videos on a channel are doing in terms of likes? Wanna
+                see which video in a playlist has sparked the most comments?
+                Need to spy on a friendly rival to see how many views
+                their videos have pulled in?
+                Then you've come to the right place, or eh, web app!
+            </p>
+            <p>
+                This app will capture the stats below for ALL videos in a playlist,
+                or ALL videos on a channel and save them as a CSV file.
+            <ul>
+                <li>video's title</li>
+                <li>published date</li>
+                <li>number of views</li>
+                <li>number of likes</li>
+                <li>number of comments</li>
+                <li>video's URL ID</li>
+                <li>length (in seconds)</li>
+                <li>video's full URL</li>
+            </ul>
+            </p>
+        </section>
+
+        <main>
+            <div id="getPlaylistContainer">
+                <h4>Get stats of videos in playlist</h4>
+                <div class="inputContainer">
+                    <input type="text" id="playlistInput" placeholder="Enter playlist URL" size="70">
+                    <h4 class="statusTracker playlist"></h4>
+                </div>
+                <div class="controlBar">
+                    <button onclick="getStats('playlist')">Execute</button>
+                    <button onclick="clearInput('playlist')">Clear</button>
+                    <span class="or"><b>
+                            - or -
+                        </b>
+                    </span>
+                    <button onclick="tryExample('playlist')">Try on example playlist</button>
+                </div>
+            </div>
+
+            <div id="getChannelContainer">
+                <h4>Get stats of videos on channel</h4>
+                <div class="inputContainer">
+                    <input type="text" id="channelInput" placeholder="Enter channel URL" size="70">
+                    <h4 class="statusTracker channel"></h4>
+                </div>
+                <div class="controlBar">
+
+                    <button onclick="getStats('channel')">Execute</button>
+                    <button onclick="clearInput('channel')">Clear</button>
+                    <span class="or"><b>
+                            - or -
+                        </b>
+                    </span>
+                    <button onclick="tryExample('channel')">Try on example channel</button>
+                    <br>
+                </div>
+            </div>
+        </main>
+
+        <!-- <div id="dataTable">
+        </div> -->
+    </div>
+
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>

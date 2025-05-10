@@ -1,0 +1,62 @@
+.wrapper {
+    padding: 0 5%;
+    display: flex;
+
+}
+
+* {
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+main {
+    padding-top: 40px;
+}
+
+h3, h4 {
+    margin: 0;
+}
+
+section#intro{
+    margin-bottom: 50px;
+    max-width: 400px;
+    margin-right: 70px;
+}
+
+#getPlaylistContainer,
+#getChannelContainer {
+    margin: 10px 0 45px 0;
+}
+
+.or{
+    margin: 0 25px;
+}
+
+.inputContainer{
+    display: flex;
+    margin: 5px 0 7px;
+
+    input{
+        padding: 2px;
+        margin-right: 15px;
+    }
+}
+
+@keyframes flashColorOpacity {
+    0%, 100% {
+      color: black;
+      opacity: 1;
+    }
+    50% {
+      color: green;
+      opacity: 0.75;
+    }
+  }
+
+  .flash {
+    animation: flashColorOpacity 1s infinite;
+  }
+
+  .final {
+    color: green;
+    opacity: 1;
+  }
