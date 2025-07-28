@@ -1,9 +1,10 @@
 from googleapiclient.discovery import build
-from dotenv import load_dotenv 
 import os
-load_dotenv()  # Load variables from .env into environment
+# from dotenv import load_dotenv
+# load_dotenv()  # Load variables from .env into environment
 # Access the variables
-api_key = os.getenv("TEST_API_KEY")
+# api_key = os.getenv("TEST_API_KEY")
+api_key = 'AIzaSyDuYrBH-f9PNlnM9MJHaC-Or5skoBpTGCw'
 
 youtube = build('youtube', 'v3', developerKey = api_key)
 

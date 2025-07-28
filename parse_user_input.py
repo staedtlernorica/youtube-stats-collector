@@ -1,10 +1,10 @@
 from googleapiclient.discovery import build
-from dotenv import load_dotenv 
+# from dotenv import load_dotenv
 import os
-load_dotenv()  # Load variables from .env into environment
+# load_dotenv()  # Load variables from .env into environment
 # Access the variables
-api_key = os.getenv("TEST_API_KEY")
-
+# api_key = os.getenv("TEST_API_KEY")
+api_key = 'AIzaSyDuYrBH-f9PNlnM9MJHaC-Or5skoBpTGCw'
 youtube = build('youtube', 'v3', developerKey = api_key)
 
 
@@ -16,7 +16,7 @@ def check_channel_id(url):
     response = request.execute()
     found_channel = response.get('pageInfo')
     found_channel = found_channel.get("totalResults")
-    
+
     if found_channel == 1:
         return True
     return False
@@ -34,7 +34,7 @@ def check_playlist_id(url):
     response = request.execute()
     found_playlist = response.get('pageInfo')
     found_playlist = found_playlist.get("totalResults")
-    
+
     if found_playlist == 1:
         return True
     return False
@@ -43,7 +43,7 @@ def check_playlist_id(url):
 #explnation for /c vs /channel vs /user and why need id
 #https://redd.it/2vsyit
 def get_channel_id(channel_link):
-    
+
     channel_url = channel_link.replace("https://",'').replace("featured",'')
     channel_videos_tab = f"https://{channel_url}/videos"
 
@@ -73,7 +73,7 @@ def get_playlist_id(url):
     link = link.replace("www.youtube.com",'')
     link = link.replace("/featured",'')
     link = link.split("=")
-    
+
     id_only = ""
     for i in link:
         id_part = ''

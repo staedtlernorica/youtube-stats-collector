@@ -1,9 +1,10 @@
 from googleapiclient.discovery import build
-from dotenv import load_dotenv 
 import os
-load_dotenv()  # Load variables from .env into environment
+# from dotenv import load_dotenv
+# load_dotenv()  # Load variables from .env into environment
 # Access the variables
-api_key = os.getenv("TEST_API_KEY")
+# api_key = os.getenv("TEST_API_KEY")
+api_key = 'AIzaSyDuYrBH-f9PNlnM9MJHaC-Or5skoBpTGCw'
 
 youtube = build('youtube', 'v3', developerKey = api_key)
 
@@ -21,7 +22,7 @@ def get_playlist_vid_id(token='', playlist = '', target = "snippet"):
 def get_vid_ids_from_json(json_dict={}):
     temp_list = []
 
-    for vid in json_dict["items"]:        
+    for vid in json_dict["items"]:
         vid_id = vid['contentDetails']['videoId']
         temp_list.append(vid_id)
 
@@ -41,16 +42,16 @@ def get_stats_from_vids_json(statDictObj = {}):
     temp_list = []
 
     for i in statDictObj['items']:
-        
+
         vid_id = i.get('id')
         #need contentDetails in scrape_yt_vids_dict
         playtime = i['contentDetails'].get('duration')
         #convert PT5M38S in actual seconds
         vid_runtime = isodate.parse_duration(playtime).total_seconds()
         vid_title = i['snippet'].get('title')
-        #[:10] only want upload dates, not hour 
-        vid_date = i['snippet'].get('publishedAt')[:10]     
-        vid_url = f'https://www.youtube.com/watch?v={vid_id}'         
+        #[:10] only want upload dates, not hour
+        vid_date = i['snippet'].get('publishedAt')[:10]
+        vid_url = f'https://www.youtube.com/watch?v={vid_id}'
         vid_views = i['statistics'].get('viewCount')
         vid_likes = i['statistics'].get('likeCount')
         # vid_dislikes = i['statistics'].get('dislikeCount')
@@ -61,8 +62,8 @@ def get_stats_from_vids_json(statDictObj = {}):
         #     vid_title = vid_title.replace('"', '')
 
         temp_list.append((vid_title, vid_date, vid_views,
-            vid_likes, 
-            # vid_dislikes, 
+            vid_likes,
+            # vid_dislikes,
             vid_comments,vid_id, vid_runtime, vid_url))
 
     return temp_list
